@@ -1,0 +1,24 @@
+{{ $radios := slice
+  (dict "label" "Auto"    "icon" "clock"  "value" "auto"      "hotkey" 0 "checked" true)
+  (dict "label" "Light"   "icon" "sun"    "value" "latte"     "hotkey" 1               )
+  (dict "label" "Dark"    "icon" "moon-1" "value" "frappe"    "hotkey" 2               )
+  (dict "label" "Darker"  "icon" "moon-2" "value" "macchiato" "hotkey" 3               )
+  (dict "label" "Darkest" "icon" "moon-3" "value" "mocha"     "hotkey" 4               )
+}}
+
+{{/* -
+  I'm rendering this partial twice within the nav: one plain, and the other one within a dropdown. All the styles with
+  `support-anchor:` target the dropdown version.
+  I wrap everything in a form to separate the two radio groups.
+*/}}
+<form>
+  <fieldset
+    class="flex flex-wrap gap-3 supports-anchor:flex-col supports-anchor:gap-1 sm:gap-4 supports-anchor:sm:gap-1.5 md:gap-5 supports-anchor:md:gap-2"
+  >
+    <legend class="sr-only">Choose a color scheme</legend>
+
+    {{ range $radios }}
+      {{ partial "utils/nav-color-scheme-radio" . }}
+    {{ end }}
+  </fieldset>
+</form>

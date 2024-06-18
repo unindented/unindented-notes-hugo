@@ -1,0 +1,19 @@
+<script>
+  (() => {
+    const colorScheme = localStorage.getItem("color-scheme") ?? "auto";
+    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const isAutoLight = colorScheme === "auto" && prefersLight;
+
+    const { classList: rootClassList } = document.documentElement;
+    const meta = document.querySelector('meta[name="color-scheme"]');
+
+    // Update root class list...
+    rootClassList.toggle("latte", colorScheme === "latte");
+    rootClassList.toggle("frappe", colorScheme === "frappe");
+    rootClassList.toggle("macchiato", colorScheme === "macchiato");
+    rootClassList.toggle("mocha", colorScheme === "mocha");
+    // ... and meta tag.
+    meta.setAttribute("content", colorScheme === "latte" || isAutoLight ? "light" : "dark");
+    // (I can't update the radio buttons cause they're not mounted yet.)
+  })();
+</script>

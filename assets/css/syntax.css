@@ -1,0 +1,299 @@
+/* Other */
+.chroma .x {
+}
+/* Error */
+.chroma .err {
+  @apply text-uwu-red;
+}
+/* LineTableTD */
+.chroma .lntd {
+}
+/* LineTable */
+.chroma .lntable {
+}
+/* LineNumbersTable */
+.chroma .lnt {
+}
+/* LineNumbers */
+.chroma .ln {
+  @apply me-2 px-2 text-uwu-surface1;
+}
+/* LineHighlight */
+.chroma .hl {
+  @apply block bg-uwu-surface0/50;
+}
+/* Keyword */
+.chroma .k {
+  @apply text-uwu-mauve;
+}
+/* KeywordConstant */
+.chroma .kc {
+  @apply text-uwu-red;
+}
+/* KeywordDeclaration */
+.chroma .kd {
+  @apply text-uwu-mauve;
+}
+/* KeywordNamespace */
+.chroma .kn {
+  @apply text-uwu-mauve;
+}
+/* KeywordPseudo */
+.chroma .kp {
+  @apply text-uwu-teal;
+}
+/* KeywordReserved */
+.chroma .kr {
+  @apply text-uwu-mauve;
+}
+/* KeywordType */
+.chroma .kt {
+  @apply text-uwu-yellow;
+}
+/* Name */
+.chroma .n {
+}
+/* NameAttribute */
+.chroma .na {
+  @apply text-uwu-blue;
+}
+/* NameBuiltin */
+.chroma .nb {
+  @apply text-uwu-yellow;
+}
+/* NameBuiltinPseudo */
+.chroma .bp {
+  @apply text-uwu-red;
+}
+/* NameClass */
+.chroma .nc {
+  @apply text-uwu-yellow;
+}
+/* NameConstant */
+.chroma .no {
+  @apply text-uwu-peach;
+}
+/* NameDecorator */
+.chroma .nd {
+  @apply text-uwu-peach;
+}
+/* NameEntity */
+.chroma .ni {
+}
+/* NameException */
+.chroma .ne {
+  @apply text-uwu-red;
+}
+/* NameFunction */
+.chroma .nf {
+  @apply text-uwu-blue;
+}
+/* NameFunctionMagic */
+.chroma .fm {
+  @apply text-uwu-sky;
+}
+/* NameLabel */
+.chroma .nl {
+}
+/* NameNamespace */
+.chroma .nn {
+  @apply text-uwu-peach;
+}
+/* NameOther */
+.chroma .nx {
+}
+/* NameProperty */
+.chroma .py {
+}
+/* NameTag */
+.chroma .nt {
+  @apply text-uwu-yellow;
+}
+/* NameVariable */
+.chroma .nv {
+}
+/* NameVariableClass */
+.chroma .vc {
+}
+/* NameVariableGlobal */
+.chroma .vg {
+}
+/* NameVariableInstance */
+.chroma .vi {
+}
+/* NameVariableMagic */
+.chroma .vm {
+}
+/* Literal */
+.chroma .l {
+}
+/* LiteralDate */
+.chroma .ld {
+}
+/* LiteralString */
+.chroma .s {
+  @apply text-uwu-green;
+}
+/* LiteralStringAffix */
+.chroma .sa {
+  @apply text-uwu-green;
+}
+/* LiteralStringBacktick */
+.chroma .sb {
+  @apply text-uwu-green;
+}
+/* LiteralStringChar */
+.chroma .sc {
+  @apply text-uwu-green;
+}
+/* LiteralStringDelimiter */
+.chroma .dl {
+  @apply text-uwu-green;
+}
+/* LiteralStringDoc */
+.chroma .sd {
+  @apply text-uwu-overlay2;
+}
+/* LiteralStringDouble */
+.chroma .s2 {
+  @apply text-uwu-green;
+}
+/* LiteralStringEscape */
+.chroma .se {
+  @apply text-uwu-pink;
+}
+/* LiteralStringHeredoc */
+.chroma .sh {
+  @apply text-uwu-green;
+}
+/* LiteralStringInterpol */
+.chroma .si {
+  @apply text-uwu-yellow;
+}
+/* LiteralStringOther */
+.chroma .sx {
+  @apply text-uwu-yellow;
+}
+/* LiteralStringRegex */
+.chroma .sr {
+  @apply text-uwu-pink;
+}
+/* LiteralStringSingle */
+.chroma .s1 {
+  @apply text-uwu-green;
+}
+/* LiteralStringSymbol */
+.chroma .ss {
+  @apply text-uwu-yellow;
+}
+/* LiteralNumber */
+.chroma .m {
+  @apply text-uwu-peach;
+}
+/* LiteralNumberBin */
+.chroma .mb {
+  @apply text-uwu-peach;
+}
+/* LiteralNumberFloat */
+.chroma .mf {
+  @apply text-uwu-peach;
+}
+/* LiteralNumberHex */
+.chroma .mh {
+  @apply text-uwu-peach;
+}
+/* LiteralNumberInteger */
+.chroma .mi {
+  @apply text-uwu-peach;
+}
+/* LiteralNumberIntegerLong */
+.chroma .il {
+  @apply text-uwu-peach;
+}
+/* LiteralNumberOct */
+.chroma .mo {
+  @apply text-uwu-peach;
+}
+/* Operator */
+.chroma .o {
+  @apply text-uwu-teal;
+}
+/* OperatorWord */
+.chroma .ow {
+  @apply text-uwu-teal;
+}
+/* Punctuation */
+.chroma .p {
+}
+/* Comment */
+.chroma .c {
+  @apply text-uwu-overlay2;
+}
+/* CommentHashbang */
+.chroma .ch {
+  @apply text-uwu-pink;
+}
+/* CommentMultiline */
+.chroma .cm {
+  @apply text-uwu-overlay2;
+}
+/* CommentSingle */
+.chroma .c1 {
+  @apply text-uwu-overlay2;
+}
+/* CommentSpecial */
+.chroma .cs {
+  @apply text-uwu-overlay2;
+}
+/* CommentPreproc */
+.chroma .cp {
+  @apply text-uwu-pink;
+}
+/* CommentPreprocFile */
+.chroma .cpf {
+  @apply text-uwu-green;
+}
+/* Generic */
+.chroma .g {
+}
+/* GenericDeleted */
+.chroma .gd {
+  @apply text-uwu-red;
+}
+/* GenericEmph */
+.chroma .ge {
+  @apply italic;
+}
+/* GenericError */
+.chroma .gr {
+}
+/* GenericHeading */
+.chroma .gh {
+}
+/* GenericInserted */
+.chroma .gi {
+  @apply text-uwu-green;
+}
+/* GenericOutput */
+.chroma .go {
+}
+/* GenericPrompt */
+.chroma .gp {
+}
+/* GenericStrong */
+.chroma .gs {
+  @apply font-bold;
+}
+/* GenericSubheading */
+.chroma .gu {
+  @apply text-uwu-overlay2;
+}
+/* GenericTraceback */
+.chroma .gt {
+}
+/* GenericUnderline */
+.chroma .gl {
+}
+/* TextWhitespace */
+.chroma .w {
+}

@@ -1,0 +1,25 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "public/",
+      "url": [
+        "/",
+        "/notes/",
+        "/notes/reference_encrypting_org_files_in_emacs/",
+        "/notes/note_auto_export_org_files_to_hugo/?s=%2Fnotes%2Fnote_dark_mode_for_hacker_news%2F&c=%2Fnotes%2Fnote_dark_mode_for_hacker_news%2F"
+      ]
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "is-crawlable": "off",
+        "render-blocking-resources": "off",
+        "unused-css-rules": "off",
+        "uses-responsive-images": "off"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

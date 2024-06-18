@@ -1,0 +1,3 @@
+[submodule "content-org"]
+	path = content-org
+	url = https://github.com/unindented/unindented-notes
