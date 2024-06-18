@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./fonts.css";
+@import "./syntax.css";
+
+@layer base {
+  *:focus {
+    @apply outline outline-2 outline-offset-2 outline-transparent;
+  }
+  *:focus:not(:focus-visible) {
+    @apply shadow-none outline outline-2 outline-offset-2 outline-transparent;
+  }
+  *:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-blue-600;
+  }
+
+  html:has(dialog[open]) {
+    @apply overflow-hidden;
+  }
+}

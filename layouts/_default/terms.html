@@ -1,0 +1,9 @@
+{{ define "article-header" }}
+  {{ partial "article-header" . }}
+{{ end }}
+
+{{ define "article-main" }}
+  {{ .Content }}
+
+  {{ partial "terms-list" .Data.Terms }}
+{{ end }}
