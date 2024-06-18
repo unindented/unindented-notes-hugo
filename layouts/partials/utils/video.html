@@ -1,0 +1,21 @@
+{{ $res := .res }}
+{{ $src := .src }}
+{{ $width := .width }}
+{{ $height := .height }}
+{{ $alt := .alt | default "" }}
+{{ $caption := .caption }}
+{{ $class := .class }}
+
+{{ $ext := $src | path.Ext | replaceRE `^\.` "" }}
+
+<figure class="{{ $class }}">
+  <video controls width="{{ $width }}" height="{{ $height }}">
+    <source src="{{ $res.RelPermalink }}" type="video/{{ $ext }}" />
+    <p>Your browser cannot play this video inline. You can <a href="{{ $res.RelPermalink }}">download it</a> instead.</p>
+  </video>
+  {{ with $caption }}
+    <figcaption>
+      {{ . | markdownify }}
+    </figcaption>
+  {{ end }}
+</figure>

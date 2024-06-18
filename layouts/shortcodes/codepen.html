@@ -1,0 +1,13 @@
+{{ $host := "codepen.io/unindented" }}
+{{ $id := .Get "id" | default (.Get 0) }}
+{{ $title := .Get "title" | default (.Get 1) | default "CodePen" }}
+{{ $tab := .Get "tab" | default "result" }}
+
+<iframe
+  title="{{ $title }}"
+  src="https://{{ $host }}/embed/preview/{{ $id }}?default-tab={{ $tab }}"
+  allow="fullscreen"
+  credentialless
+  loading="lazy"
+  class="my-8 aspect-video w-full"
+></iframe>

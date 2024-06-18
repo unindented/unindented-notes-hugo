@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./colors.css";
+@import "./fonts.css";
+@import "./syntax.css";
+
+@layer base {
+  /* Style focus outline. */
+  *:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-uwu-blue;
+  }
+
+  @supports (view-transition-name: foo) {
+    /* Don't capture the root in transitions, allowing pointer interaction during animation. */
+    :root {
+      view-transition-name: none;
+    }
+    html::view-transition {
+      pointer-events: none;
+    }
+    html::view-transition-group(*) {
+      animation-duration: 0.25s;
+    }
+    html::view-transition-old(.article),
+    html::view-transition-new(.article) {
+      height: 100%;
+    }
+  }
+}

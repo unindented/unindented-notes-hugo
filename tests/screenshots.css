@@ -1,0 +1,5 @@
+/* These two elements are sources of instability, so I'm not including them in screenshots. */
+iframe,
+video {
+  visibility: hidden;
+}

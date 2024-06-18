@@ -1,0 +1,13 @@
+{{/* -
+  I'm rendering this partial twice within the nav: one plain, and the other one within a dropdown. All the styles with
+  `support-anchor:` target the dropdown version.
+  THe `justify-center` is there so that the links are centered if they wrap to their own line on narrow viewports.
+*/}}
+<div
+  class="flex flex-wrap justify-center gap-4 supports-anchor:flex-col supports-anchor:gap-1 sm:gap-6 supports-anchor:sm:flex-row supports-anchor:sm:gap-6 md:gap-8"
+>
+  {{ range site.Menus.main }}
+    {{ $isActive := .Params.active }}
+    {{ partial "utils/nav-link" (dict "href" .URL "active" $isActive "children" .Name) }}
+  {{ end }}
+</div>

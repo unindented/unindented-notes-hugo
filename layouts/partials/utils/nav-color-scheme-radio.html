@@ -1,0 +1,24 @@
+{{ $label := .label }}
+{{ $icon := .icon }}
+{{ $value := .value }}
+{{ $hotkey := .hotkey }}
+{{ $checked := .checked | default false }}
+
+<label
+  class="-mx-2 flex cursor-pointer items-center gap-3 p-2 text-uwu-subtext0 transition-colors has-[:checked]:text-uwu-mauve hocus:text-uwu-mauve sm:gap-4 md:gap-5"
+>
+  <input
+    type="radio"
+    data-hotkey="{{ $hotkey }}"
+    name="color-scheme"
+    value="{{ $value }}"
+    {{ if $checked }}checked{{ end }}
+    class="sr-only"
+  />
+  <svg height="1em" viewbox="0 0 512 512" fill="currentColor">
+    {{ partial "utils/sprite" (dict "name" $icon) }}
+  </svg>
+  <span class="sr-only py-2 font-bold supports-anchor:not-sr-only">
+    {{ $label }}
+  </span>
+</label>
