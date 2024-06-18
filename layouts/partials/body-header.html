@@ -1,0 +1,115 @@
+<header class="mx-auto w-full max-w-7xl px-4 py-10 text-gray-600 dark:text-gray-400 sm:px-8">
+  <nav aria-label="main">
+    <ul class="flex flex-wrap items-center justify-end gap-4 font-bold sm:gap-8">
+      <li class="mr-auto block">
+        <a
+          href="https://www.unindented.org/"
+          class="block py-2 font-extrabold transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Unindented</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="https://www.unindented.org/about/"
+          class="block py-2 transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >About</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="https://www.unindented.org/blog/"
+          class="block py-2 transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Blog</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="https://www.unindented.org/playground/"
+          class="block py-2 transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Playground</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="{{ relref . "/" }}"
+          aria-current="page"
+          class="block py-2 underline transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Notes</a
+        >
+      </li>
+      <li class="block">
+        <button
+          type="button"
+          aria-labelledby="color-scheme-label"
+          data-hotkey="c"
+          id="color-scheme-button"
+          class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+        >
+          <svg height="1em" viewbox="0 0 384 512" fill="currentColor">
+            <title id="color-scheme-label">Toggle color scheme (c)</title>
+            {{ partial "utils/sprite" (dict "name" "lightbulb") }}
+          </svg>
+        </button>
+      </li>
+      <li class="block">
+        <button
+          type="button"
+          aria-labelledby="search-label"
+          data-hotkey="s,/"
+          id="search-button"
+          class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+        >
+          <svg height="1em" viewbox="0 0 512 512" fill="currentColor">
+            <title id="search-label">Open search dialog (s)</title>
+            {{ partial "utils/sprite" (dict "name" "search") }}
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <dialog
+    id="search-dialog"
+    class="h-2/3 w-full bg-white p-0 backdrop:backdrop-blur-md backdrop:backdrop-brightness-50 dark:bg-gray-900 md:max-w-prose"
+  >
+    <div class="flex h-full flex-col">
+      <form
+        method="dialog"
+        class="flex flex-col gap-4 border-b border-gray-200 p-4 dark:border-gray-700 sm:flex-row sm:p-8"
+      >
+        <label class="flex flex-1 items-center gap-4">
+          <svg height="2em" viewbox="0 0 512 512" fill="currentColor">
+            <title>Search</title>
+            {{ partial "utils/sprite" (dict "name" "search") }}
+          </svg>
+          <input
+            type="text"
+            spellcheck="false"
+            id="search-dialog-input"
+            name="q"
+            class="w-full border border-gray-500 bg-gray-50 px-3 py-2 text-base dark:bg-gray-800"
+          />
+        </label>
+        <div class="hidden flex-row gap-2 sm:flex">
+          <button
+            type="submit"
+            id="search-dialog-confirm-button"
+            class="border border-blue-900 bg-blue-700 px-4 py-1 text-white shadow-sm hover:bg-blue-800 focus:bg-blue-800"
+          >
+            Search
+          </button>
+          <button
+            id="search-dialog-cancel-button"
+            class="border border-gray-500 bg-gray-100 px-4 py-1 text-gray-700 shadow-sm hover:bg-gray-200 focus:bg-gray-200"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+      <div
+        id="search-dialog-results"
+        class="flex flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-2 sm:px-8 sm:pb-4"
+      ></div>
+    </div>
+  </dialog>
+</header>

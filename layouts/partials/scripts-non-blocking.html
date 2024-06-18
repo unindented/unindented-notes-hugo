@@ -1,0 +1,6 @@
+{{ $scripts := resources.Get "js/scripts.js" | resources.ExecuteAsTemplate "js/scripts.js" . }}
+<script async src="{{ $scripts.RelPermalink }}"></script>
+
+<script type="module" async src="/js/katex-render.mjs"></script>
+
+{{ if hugo.IsProduction }}<script async src="{{ site.Params.umamiTracker }}" data-website-id="{{ site.Params.umamiId }}"></script>{{ end }}

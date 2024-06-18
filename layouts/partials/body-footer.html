@@ -1,0 +1,89 @@
+<footer class="mx-auto w-full max-w-7xl px-4 py-10 text-gray-600 dark:text-gray-400 sm:px-8">
+  <div class="flex flex-row-reverse flex-wrap justify-around gap-8">
+    <nav aria-label="social" class="lg:ml-auto">
+      <ul class="flex flex-wrap gap-4 sm:gap-8">
+        {{ with (site.GetPage "/").OutputFormats.Get "RSS" }}
+          <li class="block">
+            <a
+              href="feed:{{ .Permalink }}"
+              aria-labelledby="social-rss-label"
+              class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+            >
+              <svg height="1em" viewBox="0 0 448 512" fill="currentColor">
+                <title id="social-rss-label">RSS</title>
+                {{ partial "utils/sprite" (dict "name" "rss") }}
+              </svg>
+            </a>
+          </li>
+        {{ end }}
+        {{ with site.Author.email }}
+          <li class="block">
+            <a
+              href="mailto:{{ . }}"
+              target="_blank"
+              rel="me noreferrer"
+              aria-labelledby="social-email-label"
+              class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+            >
+              <svg height="1em" viewBox="0 0 512 512" fill="currentColor">
+                <title id="social-email-label">Email</title>
+                {{ partial "utils/sprite" (dict "name" "email") }}
+              </svg>
+            </a>
+          </li>
+        {{ end }}
+        {{ with site.Social.mastodon }}
+          <li class="block">
+            <a
+              href="https://{{ . }}"
+              target="_blank"
+              rel="me noreferrer"
+              aria-labelledby="social-mastodon-label"
+              class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+            >
+              <svg height="1em" viewBox="0 0 448 512" fill="currentColor">
+                <title id="social-mastodon-label">Mastodon</title>
+                {{ partial "utils/sprite" (dict "name" "mastodon") }}
+              </svg>
+            </a>
+          </li>
+        {{ end }}
+        {{ with site.Social.github }}
+          <li class="block">
+            <a
+              href="https://github.com/{{ . }}"
+              target="_blank"
+              rel="me noreferrer"
+              aria-labelledby="social-github-label"
+              class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+            >
+              <svg height="1em" viewBox="0 0 496 512" fill="currentColor">
+                <title id="social-github-label">GitHub</title>
+                {{ partial "utils/sprite" (dict "name" "github") }}
+              </svg>
+            </a>
+          </li>
+        {{ end }}
+        {{ with site.Social.linkedin }}
+          <li class="block">
+            <a
+              href="https://www.linkedin.com/in/{{ . }}/"
+              target="_blank"
+              rel="me noreferrer"
+              aria-labelledby="social-linkedin-label"
+              class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+            >
+              <svg height="1em" viewBox="0 0 448 512" fill="currentColor">
+                <title id="social-linkedin-label">LinkedIn</title>
+                {{ partial "utils/sprite" (dict "name" "linkedin") }}
+              </svg>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+    <p class="prose max-w-none text-center dark:prose-invert md:prose-lg lg:prose-xl">
+      {{- site.Copyright | markdownify -}}
+    </p>
+  </div>
+</footer>

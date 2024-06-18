@@ -1,0 +1,7 @@
+<div class="flex flex-row flex-wrap gap-4 text-base text-gray-600 dark:text-gray-400">
+  <div>
+    Created {{ partial "utils/time" .Date }}
+    {{- if lt .Date .Lastmod }} — Last updated {{ partial "utils/time" .Lastmod }}{{ end -}}
+  </div>
+  {{ partial "utils/tags-list" . }}
+</div>
