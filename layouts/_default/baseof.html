@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="{{ site.LanguageCode | default "en-us" }}">
+  {{ partial "head" . }}
+
+  <body
+    class="flex h-dvh flex-col break-words bg-uwu-mantle text-sm leading-relaxed text-uwu-text antialiased selection:bg-uwu-overlay2/30 md:text-base lg:text-lg xl:text-xl"
+  >
+    {{ partial "scripts-blocking" . }}
+
+    {{ partial "skip-navigation" . }}
+    {{ partial "body-header" . }}
+
+    <main
+      id="main"
+      class="w-full flex-1 space-inline-4 scripting:overflow-y-clip scripting:overflow-x-scroll scripting:whitespace-nowrap scripting:text-center sm:space-inline-5 md:space-inline-6 lg:space-inline-8"
+    >
+      {{ $id := (trim (replaceRE `[^a-z-]` "-" .RelPermalink) "-") | default "index" }}
+      {{ $data := dict "pathname" .RelPermalink "math" (.Params.math | default false | cast.ToString) }}
+      {{ $dataAttributes := slice }}
+      {{ range $key, $value := $data }}
+        {{ $dataAttributes = $dataAttributes | append (printf "data-%s=\"%s\"" $key $value) }}
+      {{ end }}
+      {{ $dataAttributes = delimit $dataAttributes " " }}
+
+      <article
+        id="{{ $id }}"
+        class="h-entry group relative mx-auto mb-12 max-w-7xl bg-uwu-base shadow-md shadow-uwu-shadow view-transition-class-[article] scripting:mx-0 scripting:mb-0 scripting:inline-flex scripting:h-[calc(100%_-_1rem)] scripting:w-[calc(100vw_-_3rem)] scripting:max-w-none scripting:whitespace-normal scripting:text-start scripting:sm:sticky scripting:sm:start-0 scripting:sm:w-article-narrow md:shadow-lg md:shadow-uwu-shadow lg:shadow-xl lg:shadow-uwu-shadow xl:shadow-uwu-shadow"
+        {{ $dataAttributes | safeHTMLAttr }}
+      >
+        <div id="{{ $id }}-content" class="flex-1 view-transition-class-[article-content] scripting:overflow-y-scroll">
+          <div
+            class="e-content prose prose-sm max-w-article-wide px-4 py-6 md:prose-base lg:prose-lg xl:prose-xl prose-a:transition-colors prose-img:mx-auto prose-video:mx-auto hocus:prose-a:text-uwu-blue/85 scripting:max-w-none sm:px-5 sm:py-8 md:px-6 md:py-10 lg:px-8 lg:py-12 dark:prose-img:brightness-80 dark:prose-img:contrast-120 dark:prose-video:brightness-80 dark:prose-video:contrast-120"
+          >
+            {{ block "article-header" . }}{{ end }}
+            {{ block "article-main" . }}{{ end }}
+            {{ block "article-footer" . }}{{ end }}
+          </div>
+        </div>
+
+        <div
+          id="{{ $id }}-toolbar"
+          class="absolute end-0 top-0 hidden rounded-full view-transition-class-[article-toolbar] group-[:not(:first-child)]:block"
+        >
+          <button
+            type="button"
+            aria-labelledby="{{ $id }}-close"
+            class="m-1 block rounded-full bg-uwu-mantle p-1 text-uwu-subtext0 shadow-inner shadow-uwu-shadow transition-colors focus-visible:outline-uwu-subtext1 hocus:text-uwu-subtext1 sm:m-2 md:m-3 lg:m-5"
+            data-action="close"
+          >
+            <svg viewbox="0 0 384 512" fill="currentColor" class="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8">
+              <title id="{{ $id }}-close">Close note</title>
+              {{ partial "utils/sprite" (dict "name" "close") }}
+            </svg>
+          </button>
+        </div>
+      </article>
+    </main>
+
+    {{ partial "scripts-non-blocking" . }}
+  </body>
+</html>

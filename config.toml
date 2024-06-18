@@ -1,0 +1,123 @@
+baseURL = "https://dev.notes.unindented.org"
+languageCode = "en-us"
+title = "Notes — Unindented"
+copyright = "All content by <a href=\"https://www.unindented.org/\" rel=\"me\" class=\"h-card\">Daniel Perez Alvarez</a> unless otherwise noted. <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\" target=\"_blank\" rel=\"noreferrer\">Some rights reserved</a>."
+
+enableRobotsTXT = true
+ignoreFiles = ["LICENSE", "README.md"]
+
+[params]
+description = "Notes of Daniel Perez Alvarez"
+themeColor = "#27272a"
+backgroundColor = "#27272a"
+articleLatestCount = 15
+umamiId = "621d806f-1021-4898-b52b-cf25f3325287"
+umamiTracker = "https://umm.unindented.org/umm.js"
+
+[params.author]
+name = "Daniel Perez Alvarez"
+email = "daniel@unindented.org"
+
+[menus]
+[[menus.main]]
+name = 'About'
+url = 'https://www.unindented.org/about'
+weight = 10
+[[menus.main]]
+name = 'Blog'
+url = 'https://www.unindented.org/blog'
+weight = 20
+[[menus.main]]
+name = 'Playground'
+url = 'https://www.unindented.org/playground'
+weight = 30
+[[menus.main]]
+name = 'Notes'
+pageRef = '/'
+weight = 40
+[menus.main.params]
+active = true
+
+# Other stuff
+
+[build]
+noJSConfigInAssets = true
+writeStats = true
+
+[imaging]
+quality = 85
+resampleFilter = 'box'
+
+[markup.highlight]
+noClasses = false
+
+[markup.goldmark.extensions.extras.insert]
+enable = true
+[markup.goldmark.extensions.extras.mark]
+enable = true
+[markup.goldmark.extensions.extras.subscript]
+enable = true
+[markup.goldmark.extensions.extras.superscript]
+enable = true
+
+[markup.goldmark.parser.attribute]
+block = true
+title = true
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[mediaTypes."application/manifest+json"]
+suffixes = ["webmanifest", "json"]
+
+[outputFormats.manifest]
+mediaType = "application/manifest+json"
+baseName = "manifest"
+isPlainText = true
+rel = "manifest"
+
+[outputFormats.rss]
+baseName = "rss"
+
+[outputFormats.search]
+mediaType = "application/json"
+baseName = "search"
+
+[outputs]
+home = ["html", "manifest", "rss", "search"]
+page = ["html"]
+section = ["html"]
+taxonomy = ["html"]
+term = ["html"]
+
+[privacy.disqus]
+disable = true
+
+[privacy.googleAnalytics]
+disable = true
+
+[privacy.instagram]
+simple = false
+
+[privacy.twitter]
+enableDNT = true
+simple = false
+
+[privacy.vimeo]
+enableDNT = true
+simple = false
+
+[privacy.youtube]
+privacyEnhanced = true
+
+[related]
+includeNewer = true
+threshold = 80
+toLower = false
+
+[[related.indices]]
+name = "tags"
+weight = 100
+
+[taxonomies]
+tag = "tags"

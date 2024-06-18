@@ -1,0 +1,9 @@
+<ul>
+  {{ range . }}
+    <li class="text-balance">
+      <a href="{{ .RelPermalink }}">
+        {{ .Title | markdownify }}
+      </a>
+    </li>
+  {{ end }}
+</ul>

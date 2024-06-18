@@ -1,0 +1,126 @@
+@layer base {
+  :root,
+  .latte {
+    --uwu-rosewater: 220 138 120;
+    --uwu-flamingo: 221 120 120;
+    --uwu-pink: 234 118 203;
+    --uwu-mauve: 136 57 239;
+    --uwu-red: 210 15 57;
+    --uwu-maroon: 230 69 83;
+    --uwu-peach: 254 100 11;
+    --uwu-yellow: 223 142 29;
+    --uwu-green: 64 160 43;
+    --uwu-teal: 23 146 153;
+    --uwu-sky: 4 165 229;
+    --uwu-sapphire: 32 159 181;
+    --uwu-blue: 30 102 245;
+    --uwu-lavender: 114 135 253;
+    --uwu-text: 76 79 105;
+    --uwu-subtext1: 92 95 119;
+    --uwu-subtext0: 108 111 133;
+    --uwu-overlay2: 124 127 147;
+    --uwu-overlay1: 140 143 161;
+    --uwu-overlay0: 156 160 176;
+    --uwu-surface2: 172 176 190;
+    --uwu-surface1: 188 192 204;
+    --uwu-surface0: 204 208 218;
+    --uwu-base: 239 241 245;
+    --uwu-mantle: 230 233 239;
+    --uwu-crust: 220 224 232;
+    --uwu-shadow: 0 0 0;
+    --uwu-shadow-alpha: 0.05;
+  }
+
+  .frappe {
+    --uwu-rosewater: 242 213 207;
+    --uwu-flamingo: 238 190 190;
+    --uwu-pink: 244 184 228;
+    --uwu-mauve: 202 158 230;
+    --uwu-red: 231 130 132;
+    --uwu-maroon: 234 153 156;
+    --uwu-peach: 239 159 118;
+    --uwu-yellow: 229 200 144;
+    --uwu-green: 166 209 137;
+    --uwu-teal: 129 200 190;
+    --uwu-sky: 153 209 219;
+    --uwu-sapphire: 133 193 220;
+    --uwu-blue: 140 170 238;
+    --uwu-lavender: 186 187 241;
+    --uwu-text: 198 208 245;
+    --uwu-subtext1: 181 191 226;
+    --uwu-subtext0: 165 173 206;
+    --uwu-overlay2: 148 156 187;
+    --uwu-overlay1: 131 139 167;
+    --uwu-overlay0: 115 121 148;
+    --uwu-surface2: 98 104 128;
+    --uwu-surface1: 81 87 109;
+    --uwu-surface0: 65 69 89;
+    --uwu-base: 48 52 70;
+    --uwu-mantle: 41 44 60;
+    --uwu-crust: 35 38 52;
+    --uwu-shadow: 0 0 0;
+    --uwu-shadow-alpha: 0.35;
+  }
+
+  .macchiato {
+    --uwu-rosewater: 244 219 214;
+    --uwu-flamingo: 240 198 198;
+    --uwu-pink: 245 189 230;
+    --uwu-mauve: 198 160 246;
+    --uwu-red: 237 135 150;
+    --uwu-maroon: 238 153 160;
+    --uwu-peach: 245 169 127;
+    --uwu-yellow: 238 212 159;
+    --uwu-green: 166 218 149;
+    --uwu-teal: 139 213 202;
+    --uwu-sky: 145 215 227;
+    --uwu-sapphire: 125 196 228;
+    --uwu-blue: 138 173 244;
+    --uwu-lavender: 183 189 248;
+    --uwu-text: 202 211 245;
+    --uwu-subtext1: 184 192 224;
+    --uwu-subtext0: 165 173 203;
+    --uwu-overlay2: 147 154 183;
+    --uwu-overlay1: 128 135 162;
+    --uwu-overlay0: 110 115 141;
+    --uwu-surface2: 91 96 120;
+    --uwu-surface1: 73 77 100;
+    --uwu-surface0: 54 58 79;
+    --uwu-base: 36 39 58;
+    --uwu-mantle: 30 32 48;
+    --uwu-crust: 24 25 38;
+    --uwu-shadow: 0 0 0;
+    --uwu-shadow-alpha: 0.4;
+  }
+
+  .mocha {
+    --uwu-rosewater: 245 224 220;
+    --uwu-flamingo: 242 205 205;
+    --uwu-pink: 245 194 231;
+    --uwu-mauve: 203 166 247;
+    --uwu-red: 243 139 168;
+    --uwu-maroon: 235 160 172;
+    --uwu-peach: 250 179 135;
+    --uwu-yellow: 249 226 175;
+    --uwu-green: 166 227 161;
+    --uwu-teal: 148 226 213;
+    --uwu-sky: 137 220 235;
+    --uwu-sapphire: 116 199 236;
+    --uwu-blue: 137 180 250;
+    --uwu-lavender: 180 190 254;
+    --uwu-text: 205 214 244;
+    --uwu-subtext1: 186 194 222;
+    --uwu-subtext0: 166 173 200;
+    --uwu-overlay2: 147 153 178;
+    --uwu-overlay1: 127 132 156;
+    --uwu-overlay0: 108 112 134;
+    --uwu-surface2: 88 91 112;
+    --uwu-surface1: 69 71 90;
+    --uwu-surface0: 49 50 68;
+    --uwu-base: 30 30 46;
+    --uwu-mantle: 24 24 37;
+    --uwu-crust: 17 17 27;
+    --uwu-shadow: 0 0 0;
+    --uwu-shadow-alpha: 0.45;
+  }
+}

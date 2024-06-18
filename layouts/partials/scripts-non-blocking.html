@@ -1,0 +1,9 @@
+{{ $scripts := resources.Get "js/scripts.mjs" |
+               resources.ExecuteAsTemplate "js/scripts.mjs" . |
+               js.Build (dict "format" "esm"
+                              "minify" hugo.IsProduction
+                              "sourceMap" "external"
+                              "targetPath" "js/scripts.min.mjs") }}
+<script type="module" async src="{{ $scripts.RelPermalink }}"></script>
+
+{{ if hugo.IsProduction }}<script async src="{{ site.Params.umamiTracker }}" data-website-id="{{ site.Params.umamiId }}"></script>{{ end }}

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*"]
+    },
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "target": "ESNext",
+    "strict": true
+  },
+  "include": ["js/*.mjs"]
+}

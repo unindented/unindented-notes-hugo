@@ -1,0 +1,20 @@
+<div class="relative -mx-2 p-2">
+  <input
+    type="radio"
+    data-hotkey="{{ .hotkey }}"
+    name="color-scheme"
+    value="{{ .value }}"
+    {{ if .checked }}checked{{ end }}
+    id="color-scheme-{{ .value }}"
+    class="peer absolute bottom-0 end-0 start-0 top-0 cursor-pointer opacity-0"
+  />
+  <label
+    for="color-scheme-{{ .value }}"
+    class="text-uwu-subtext0 transition-colors focus-visible:outline-uwu-subtext1 peer-checked:text-uwu-mauve peer-hocus:text-uwu-mauve"
+  >
+    <svg height="1em" viewbox="0 0 512 512" fill="currentColor">
+      <title id="color-scheme-{{ .value }}-label">{{ .label }}</title>
+      {{ partial "utils/sprite" (dict "name" .icon) }}
+    </svg>
+  </label>
+</div>

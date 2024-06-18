@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+          submodules: recursive
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Run lint tests
+        run: pnpm test:lint
+      - name: Run type checks
+        run: pnpm test:type
+      - name: Run e2e tests
+        run: pnpm test:e2e --ignore-snapshots
+      - name: Build website
+        run: |
+          pnpm build \
+            --baseURL "$BASE_URL" \
+            --destination "public"
+        env:
+          BASE_URL: ${{ github.event_name == 'pull_request' && 'https://dev.notes.unindented.org/' || 'https://notes.unindented.org/' }}
+      - name: Compress files
+        run: make compress
+      - name: Upload website
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4
+        with:
+          name: website
+          path: public
+          retention-days: 1
+      - name: Upload e2e test reports
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4
+        if: ${{ always() }}
+        with:
+          name: e2e-reports
+          path: |
+            e2e-report/
+            e2e-results/
+          retention-days: 7

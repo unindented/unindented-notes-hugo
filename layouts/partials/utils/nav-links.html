@@ -1,0 +1,4 @@
+{{ range site.Menus.main }}
+  {{ $isActive := .Params.active }}
+  {{ partial "utils/nav-link" (dict "href" .URL "active" $isActive "children" .Name) }}
+{{ end }}

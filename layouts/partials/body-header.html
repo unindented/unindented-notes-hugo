@@ -1,0 +1,18 @@
+<header
+  class="mx-auto flex w-full max-w-screen-xl flex-wrap justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6 md:py-8 lg:py-10"
+>
+  {{ partial "utils/nav-link" (dict "href" "htps://www.unindented.org/" "active" false "children" "Unindented") }}
+
+  <div class="flex flex-wrap items-center gap-6 sm:gap-8 md:gap-10">
+    <nav class="flex flex-wrap items-center gap-4 supports-anchor:hidden sm:gap-6 supports-anchor:sm:flex md:gap-8">
+      {{ partial "utils/nav-links" . }}
+    </nav>
+    <div class="hidden supports-anchor:block sm:hidden">
+      {{ partial "utils/nav-dropdown" . }}
+    </div>
+    {{ partial "utils/nav-search-button" . }}
+    {{ partial "utils/nav-color-scheme-radios" . }}
+  </div>
+
+  {{ partial "body-search-dialog" . }}
+</header>

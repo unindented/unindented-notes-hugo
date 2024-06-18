@@ -1,0 +1,19 @@
+{{ $radios := slice
+  (dict "label" "Auto"    "icon" "clock"  "value" "auto"      "checked" true)
+  (dict "label" "Light"   "icon" "sun"    "value" "latte"                   )
+  (dict "label" "Dark"    "icon" "moon-1" "value" "frappe"                  )
+  (dict "label" "Darker"  "icon" "moon-2" "value" "macchiato"               )
+  (dict "label" "Darkest" "icon" "moon-3" "value" "mocha"                   )
+}}
+
+<div
+  aria-labelledby="color-scheme-label"
+  id="color-scheme-radios"
+  class="hidden flex-wrap items-center gap-3 scripting:flex sm:gap-4 md:gap-5"
+>
+  <span id="color-scheme-label" class="sr-only">Choose a color scheme</span>
+
+  {{ range $radios }}
+    {{ partial "utils/nav-color-scheme-radio" . }}
+  {{ end }}
+</div>
