@@ -1,0 +1,11 @@
+<div class="h-feed">
+  <ul>
+    {{ range . }}
+      <li class="h-entry text-balance">
+        <a href="{{ .RelPermalink }}" class="p-name u-url u-uid">
+          {{ .Title | markdownify }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</div>

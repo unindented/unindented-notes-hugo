@@ -1,0 +1,41 @@
+<dialog
+  id="search-dialog"
+  class="prose prose-sm h-2/3 w-full bg-white p-0 dark:prose-invert md:prose-base lg:prose-lg xl:prose-xl backdrop:backdrop-blur-md backdrop:backdrop-brightness-50 prose-a:text-blue-700 hover:prose-a:text-blue-800 focus:prose-a:text-blue-800 prose-img:mx-auto prose-video:mx-auto dark:bg-gray-900 dark:prose-a:text-blue-300 dark:hover:prose-a:text-blue-200 dark:focus:prose-a:text-blue-200 dark:prose-img:brightness-80 dark:prose-img:contrast-120 dark:prose-video:brightness-80 dark:prose-video:contrast-120 md:max-w-screen-md"
+>
+  <div class="flex h-full flex-col">
+    <form
+      method="dialog"
+      class="flex flex-col gap-4 border-b border-gray-200 p-4 dark:border-gray-700 sm:flex-row sm:p-8"
+    >
+      <label class="flex flex-1 items-center gap-4">
+        <input
+          type="text"
+          placeholder="Enter your search terms..."
+          spellcheck="false"
+          id="search-dialog-input"
+          name="q"
+          class="w-full border border-gray-500 bg-gray-50 px-3 py-2 dark:bg-gray-800"
+        />
+      </label>
+      <div class="hidden flex-row gap-2 sm:flex">
+        <button
+          type="submit"
+          id="search-dialog-confirm-button"
+          class="border border-blue-900 bg-blue-700 px-4 py-1 text-white shadow-sm hover:bg-blue-800 focus:bg-blue-800"
+        >
+          Search
+        </button>
+        <button
+          id="search-dialog-cancel-button"
+          class="border border-gray-500 bg-gray-100 px-4 py-1 text-gray-700 shadow-sm hover:bg-gray-200 focus:bg-gray-200"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+    <div
+      id="search-dialog-results"
+      class="flex flex-1 flex-col overflow-y-auto overscroll-contain px-4 pt-4 sm:px-8"
+    ></div>
+  </div>
+</dialog>

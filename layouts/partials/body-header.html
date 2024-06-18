@@ -1,0 +1,72 @@
+<header class="mx-auto w-full max-w-screen-xl px-4 py-10 text-gray-600 dark:text-gray-400 sm:px-8">
+  <nav aria-label="main">
+    <ul class="flex flex-wrap items-center justify-end gap-4 font-bold sm:gap-8">
+      <li class="mr-auto block">
+        <a
+          href="https://www.unindented.org/"
+          class="block py-2 font-extrabold transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Unindented</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="https://www.unindented.org/about/"
+          class="block py-2 transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >About</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="https://www.unindented.org/blog/"
+          class="block py-2 transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Blog</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="https://www.unindented.org/playground/"
+          class="block py-2 transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Playground</a
+        >
+      </li>
+      <li class="block">
+        <a
+          href="{{ relref . "/" }}"
+          aria-current="page"
+          class="block py-2 underline transition-colors hover:text-gray-700 hover:underline focus:text-gray-700 focus:underline dark:hover:text-gray-300 dark:focus:text-gray-300"
+          >Notes</a
+        >
+      </li>
+      <li class="block">
+        <button
+          type="button"
+          aria-labelledby="color-scheme-label"
+          data-hotkey="c"
+          id="color-scheme-button"
+          class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+        >
+          <svg height="1em" viewbox="0 0 384 512" fill="currentColor">
+            <title id="color-scheme-label">Toggle color scheme</title>
+            {{ partial "utils/sprite" (dict "name" "lightbulb") }}
+          </svg>
+        </button>
+      </li>
+      <li class="block">
+        <button
+          type="button"
+          aria-labelledby="search-label"
+          data-hotkey="s,/"
+          id="search-button"
+          class="block py-2 transition-colors hover:text-gray-700 focus:text-gray-700 dark:hover:text-gray-300 dark:focus:text-gray-300"
+        >
+          <svg height="1em" viewbox="0 0 512 512" fill="currentColor">
+            <title id="search-label">Open search dialog</title>
+            {{ partial "utils/sprite" (dict "name" "search") }}
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  {{ partial "body-search-dialog" . }}
+</header>

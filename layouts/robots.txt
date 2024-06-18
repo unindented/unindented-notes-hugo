@@ -1,0 +1,2 @@
+User-agent: *
+{{ if ne site.BaseURL "https://notes.unindented.org" }}Disallow: /{{ end }}
