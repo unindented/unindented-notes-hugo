@@ -1,0 +1,11 @@
+{{ $href := .href }}
+{{ $active := .active | default false }}
+{{ $children := .children }}
+
+<a
+  href="{{ $href }}"
+  {{ if $active }}aria-current="page"{{ end }}
+  class="{{ cond $active "underline" "" }} block py-2 font-bold text-uwu-subtext0 outline-uwu-mauve transition-colors hocus:text-uwu-mauve hocus:underline"
+>
+  {{ $children }}
+</a>

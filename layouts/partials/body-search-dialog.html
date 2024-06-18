@@ -1,0 +1,39 @@
+<dialog
+  id="search-dialog"
+  class="prose prose-sm h-2/3 w-full bg-uwu-mantle p-0 md:prose-base lg:prose-lg xl:prose-xl backdrop:backdrop-blur-md backdrop:backdrop-brightness-50 prose-a:transition-colors hocus:prose-a:text-uwu-blue/85 md:max-w-screen-md"
+>
+  <div class="flex h-full flex-col">
+    <form
+      method="dialog"
+      class="flex flex-col gap-2 border-b border-uwu-overlay0 p-4 sm:flex-row sm:gap-2.5 sm:p-5 md:gap-3 md:p-6"
+    >
+      <label class="flex-1">
+        <span class="sr-only">Search terms:</span>
+        <input
+          type="text"
+          placeholder="Enter your search terms..."
+          spellcheck="false"
+          name="q"
+          id="search-dialog-input"
+          class="w-full border border-uwu-overlay0 bg-uwu-base px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2"
+        />
+      </label>
+      <div class="hidden flex-row gap-1 sm:flex sm:gap-1.5 md:gap-2">
+        <button
+          type="submit"
+          id="search-dialog-confirm-button"
+          class="border border-uwu-overlay0 bg-uwu-blue px-4 text-uwu-base shadow-sm hocus:bg-uwu-blue/85"
+        >
+          Search
+        </button>
+        <button
+          id="search-dialog-cancel-button"
+          class="border border-uwu-overlay0 bg-uwu-overlay2 px-4 text-uwu-base shadow-sm hocus:bg-uwu-overlay2/85"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+    <div id="search-dialog-results" class="flex-1 overflow-y-auto overscroll-contain px-4 sm:px-5 md:px-6"></div>
+  </div>
+</dialog>

@@ -1,0 +1,14 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $caption := .Get "caption" }}
+{{ $width := .Get "width" }}
+{{ $height := .Get "height" }}
+{{ $class := .Get "class" }}
+
+{{ $res := .Page.Resources.GetMatch $src }}
+{{ $context := dict "res" $res "src" $src "alt" $alt "caption" $caption "width" $width "height" $height "class" $class}}
+
+{{ $videoExts := slice "mp4" "webm" }}
+{{ $ext := $src | path.Ext | replaceRE `^\.` "" }}
+
+{{ partial (cond (in $videoExts $ext) "utils/video" "utils/img") $context }}

@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "name": "unindented-notes-hugo",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unindented/unindented-notes-hugo.git"
+  },
+  "scripts": {
+    "clean": "rm -rf .packages e2e-report e2e-results public resources/_gen .hugo_build.lock hugo_stats.json",
+    "dev": "hugo server --buildDrafts --buildExpired --buildFuture --navigateToChanged",
+    "build": "hugo --cleanDestinationDir --minify",
+    "start": "python3 -m http.server -d public 1313 >/dev/null 2>&1",
+    "test": "run-s test:*",
+    "test:lint": "eslint .",
+    "test:type": "tsc -p assets/jsconfig.json",
+    "test:e2e": "playwright test",
+    "test:e2e:update-snapshots": "run-s test:e2e:update-snapshots:*",
+    "test:e2e:update-snapshots:host": "pnpm test:e2e --update-snapshots",
+    "test:e2e:update-snapshots:linux": "docker run -it --rm --ipc=host -v \"${PWD}:/var/app/\" mcr.microsoft.com/playwright:v1.45.1-jammy /bin/bash -c 'cd /var/app; export CI=true; corepack enable; pnpm playwright install; pnpm test:e2e --update-snapshots'",
+    "test:lhci": "pnpm --package=@lhci/cli dlx lhci autorun"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "0.5.7",
+    "@tailwindcss/typography": "0.5.13",
+    "autoprefixer": "10.4.19",
+    "cssnano": "7.0.4",
+    "postcss": "8.4.40",
+    "postcss-cli": "11.0.0",
+    "tailwindcss": "3.4.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.8.0",
+    "@playwright/test": "1.45.3",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-terser": "0.4.4",
+    "eslint": "9.8.0",
+    "globals": "15.8.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.3.3",
+    "prettier-plugin-go-template": "0.0.15",
+    "prettier-plugin-tailwindcss": "0.6.5",
+    "rollup": "4.19.1",
+    "typescript": "5.5.4"
+  },
+  "packageManager": "pnpm@9.5.0"
+}

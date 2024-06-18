@@ -1,0 +1,46 @@
+<header class="mx-auto flex w-full max-w-screen-xl px-4 py-2 sm:px-8 sm:py-4 md:py-6 lg:py-8">
+  <div class="flex w-full flex-wrap items-center justify-end gap-x-6 sm:gap-x-8 md:gap-x-10">
+    {{/* The combination of `justify-end` on the parent and `me-auto` here pushes this block to the start. */}}
+    <div class="me-auto">
+      {{ partial "utils/nav-link" (dict "href" "https://www.unindented.org/" "active" false "children" "Unindented") }}
+    </div>
+
+    {{/* -
+      I'm doing `order-last` here only if the browser doesn't support anchor positioning. It will cause this block to
+      wrap below the other two in viewports smaller than `sm`.
+    */}}
+    <div class="order-last w-full supports-anchor:order-none supports-anchor:w-auto sm:order-none sm:w-auto">
+      {{/* Show links in a dropdown if browser supports anchor positioning and the viewport is smaller than `sm`. */}}
+      <div class="hidden supports-anchor:block sm:hidden">
+        {{ partial "utils/nav-links-dropdown" . }}
+      </div>
+      <nav class="block supports-anchor:hidden sm:block">
+        {{ partial "utils/nav-links" . }}
+      </nav>
+    </div>
+
+    <div class="hidden items-center gap-x-6 scripting:flex sm:gap-x-8 md:gap-x-10">
+      {{/* -
+        I'm doing `order-last` here so that we display it after the color scheme picker (for aesthetics), but keyboard
+        and screenreader users get it first.
+        Also, we're hiding by default because this button isn't functional without scripting enabled.
+      */}}
+      <div class="order-last">
+        {{ partial "utils/nav-search-button" . }}
+      </div>
+
+      {{/* I'm hiding by default because these radios aren't functional without scripting enabled. */}}
+      <div id="color-scheme-radios" class="hidden scripting:block">
+        {{/* Show radios in a dropdown if browser supports anchor positioning, for all viewport sizes. */}}
+        <div class="hidden supports-anchor:block">
+          {{ partial "utils/nav-color-scheme-radios-dropdown" . }}
+        </div>
+        <div class="block supports-anchor:hidden">
+          {{ partial "utils/nav-color-scheme-radios" . }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ partial "body-search-dialog" . }}
+</header>

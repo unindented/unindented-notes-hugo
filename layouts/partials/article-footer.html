@@ -1,0 +1,12 @@
+{{ if .Params.date }}
+  <hr />
+  <footer class="lg:prose-base xl:prose-lg">
+    <div class="flex flex-row flex-wrap gap-2 text-uwu-subtext0 sm:gap-2.5 md:gap-3">
+      <div>
+        Created {{ partial "utils/time" .Date }}
+        {{ if lt .Date .Lastmod }} — Updated {{ partial "utils/time" .Lastmod }}{{ end }}
+      </div>
+      {{ partial "utils/tags-list" . }}
+    </div>
+  </footer>
+{{ end }}

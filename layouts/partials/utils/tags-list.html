@@ -1,0 +1,9 @@
+{{ $tags := .GetTerms "tags" }}
+
+<ul aria-label="Tags" class="not-prose inline-flex flex-wrap gap-2 sm:gap-2.5 md:gap-3">
+  {{ range (apply $tags "partial" "utils/tag-pill" ".") }}
+    <li class="block">
+      {{ . }}
+    </li>
+  {{ end }}
+</ul>

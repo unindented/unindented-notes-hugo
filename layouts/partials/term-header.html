@@ -1,0 +1,8 @@
+{{/* Add some margin so that the header doesn't bump into the close button. */}}
+<header class="me-6 sm:me-7 md:me-8 lg:me-10">
+  <h1 class="p-name">
+    <a href="{{ .RelPermalink }}" class="not-prose outline-uwu-mauve">
+      Tagged {{ .Title | printf "\"%s\"" | markdownify }}
+    </a>
+  </h1>
+</header>
