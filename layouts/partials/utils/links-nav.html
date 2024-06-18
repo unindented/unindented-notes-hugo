@@ -1,0 +1,7 @@
+{{ $currentPage := .currentPage }}
+
+{{ range site.Menus.main }}
+  {{ $isSpecial := .Params.special }}
+  {{ $isActive := .Params.active }}
+  {{ partial "utils/link-nav" (dict "href" .URL "special" $isSpecial "active" $isActive "children" .Name) }}
+{{ end }}

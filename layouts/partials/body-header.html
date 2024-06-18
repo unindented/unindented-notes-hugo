@@ -1,0 +1,37 @@
+<header class="mx-auto w-full max-w-screen-xl px-4 py-4 text-uwu-subtext0 sm:px-8 sm:py-6 md:py-8 lg:py-10">
+  <nav>
+    <ul class="flex flex-wrap items-center justify-end gap-4 font-bold sm:gap-8">
+      {{ partial "utils/links-nav" (dict "currentPage" .) }}
+      <li class="block">
+        <button
+          type="button"
+          aria-labelledby="color-scheme-label"
+          data-hotkey="c"
+          id="color-scheme-button"
+          class="block py-2 transition-colors focus-visible:outline-uwu-subtext1 hocus:text-uwu-subtext1"
+        >
+          <svg height="1em" viewbox="0 0 384 512" fill="currentColor">
+            <title id="color-scheme-label">Toggle color scheme</title>
+            {{ partial "utils/sprite" (dict "name" "lightbulb") }}
+          </svg>
+        </button>
+      </li>
+      <li class="block">
+        <button
+          type="button"
+          aria-labelledby="search-label"
+          data-hotkey="s,/"
+          id="search-button"
+          class="block py-2 transition-colors focus-visible:outline-uwu-subtext1 hocus:text-uwu-subtext1"
+        >
+          <svg height="1em" viewbox="0 0 512 512" fill="currentColor">
+            <title id="search-label">Open search dialog</title>
+            {{ partial "utils/sprite" (dict "name" "search") }}
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  {{ partial "body-search-dialog" . }}
+</header>

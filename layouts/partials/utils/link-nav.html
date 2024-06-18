@@ -1,0 +1,14 @@
+{{ $href := .href }}
+{{ $special := .special | default false }}
+{{ $active := .active | default false }}
+{{ $children := .children }}
+
+<li class="{{ cond $special "me-auto" "" }} block">
+  <a
+    href="{{ $href }}"
+    {{ if $active }}aria-current="page"{{ end }}
+    class="{{ cond $special "font-extrabold" "" }} {{ cond $active "underline" "" }} block py-2 transition-colors focus-visible:outline-uwu-subtext1 hocus:text-uwu-subtext1 hocus:underline"
+  >
+    {{ $children }}
+  </a>
+</li>
