@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ site.LanguageCode | default "en-us" }}">
+  {{ partial "head" . }}
+  <body
+    class="flex h-dvh flex-col overflow-hidden break-words bg-gray-100 text-sm leading-relaxed text-gray-700 antialiased selection:bg-blue-200 dark:bg-gray-800 dark:text-gray-300 dark:selection:bg-blue-800 md:text-base lg:text-lg xl:text-xl"
+  >
+    {{ partial "scripts-blocking" . }}
+
+    {{ partial "skip-navigation" . }}
+    {{ partial "body-header" . }}
+
+    <main id="main" class="flex max-w-full flex-1 gap-8 overflow-y-hidden overflow-x-scroll">
+      {{ $class := "basis-article max-w-article prose prose-sm flex flex-shrink-0 flex-grow flex-col overflow-y-scroll bg-white px-4 py-10 dark:prose-invert md:prose-base lg:prose-lg xl:prose-xl prose-a:text-blue-700 hover:prose-a:text-blue-800 focus:prose-a:text-blue-800 prose-img:mx-auto prose-video:mx-auto dark:bg-gray-900 dark:prose-a:text-blue-300 dark:hover:prose-a:text-blue-200 dark:focus:prose-a:text-blue-200 dark:prose-img:brightness-80 dark:prose-img:contrast-120 dark:prose-video:brightness-80 dark:prose-video:contrast-120 sm:px-8" }}
+      {{ $data := dict "pathname" .RelPermalink "math" (.Params.math | default false | cast.ToString) }}
+      {{ $dataAttributes := slice }}
+      {{ range $key, $value := $data }}
+        {{ $dataAttributes = $dataAttributes | append (printf "data-%s=\"%s\"" $key $value) }}
+      {{ end }}
+      {{ $dataAttributes = delimit $dataAttributes " " }}
+
+      {{ if (or .IsHome .IsPage) }}
+        <article class="h-entry {{ $class }}" {{ $dataAttributes | safeHTMLAttr }}>
+      {{ else }}
+        <div class="{{ $class }}" {{ $dataAttributes | safeHTMLAttr }}>
+      {{ end }}
+        {{ block "article-header" . }}{{ end }}
+        <div class="{{ cond .IsPage "e-content " "" }} flex-1">
+          {{ block "article-main" . }}{{ end }}
+        </div>
+        {{ block "article-footer" . }}{{ end }}
+      {{ if (or .IsHome .IsPage) }}
+        </article>
+      {{ else }}
+        </div>
+      {{ end}}
+    </main>
+
+    {{ partial "scripts-non-blocking" . }}
+  </body>
+</html>

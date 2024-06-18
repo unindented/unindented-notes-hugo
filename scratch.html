@@ -1,0 +1,4 @@
+{{ $mathScript := resources.Get "js/math.mjs" | js.Build (dict "format" "esm" "minify" true "sourceMap" "external" "targetPath" "js/math.min.mjs") }}
+<div
+  class="basis-article max-w-article prose prose-sm flex flex-shrink-0 flex-grow flex-col overflow-y-scroll bg-white px-4 py-10 dark:prose-invert md:prose-base lg:prose-lg prose-a:text-blue-700 hover:prose-a:text-blue-800 focus:prose-a:text-blue-800 prose-img:mx-auto prose-video:mx-auto dark:bg-gray-900 dark:prose-a:text-blue-300 dark:hover:prose-a:text-blue-200 dark:focus:prose-a:text-blue-200 dark:prose-img:brightness-80 dark:prose-img:contrast-120 dark:prose-video:brightness-80 dark:prose-video:contrast-120 sm:px-8"
+></div>
