@@ -1,6 +1,6 @@
 const typography = require("@tailwindcss/typography");
 
-const { anchor, hocus, mediaQuery, pointerQuery, spaceInline } = require("./tailwind.plugins");
+const { anchor, hocus, mediaQuery, pointerQuery, spaceInline, viewTransition } = require("./tailwind.plugins");
 const customTypography = require("./tailwind.typography");
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     "./static/js/*.js",
     "./static/js/*.mjs",
   ],
-  plugins: [typography, anchor, hocus, mediaQuery, pointerQuery, spaceInline],
+  plugins: [typography, anchor, hocus, mediaQuery, pointerQuery, spaceInline, viewTransition],
   darkMode: "selector",
   theme: {
     extend: {
@@ -23,8 +23,7 @@ module.exports = {
         120: "1.2",
       },
       spacing: {
-        "article-container": "55ch",
-        "article-content": "65ch",
+        article: "55ch",
       },
       typography: customTypography,
 
@@ -56,6 +55,7 @@ module.exports = {
           base: "rgb(var(--uwu-base) / <alpha-value>)",
           mantle: "rgb(var(--uwu-mantle) / <alpha-value>)",
           crust: "rgb(var(--uwu-crust) / <alpha-value>)",
+          shadow: "rgb(var(--uwu-shadow) / var(--uwu-shadow-alpha))",
         },
       },
     },

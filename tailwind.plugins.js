@@ -102,10 +102,22 @@ const spaceInlinePlugin = plugin(({ matchUtilities, addUtilities, theme }) => {
   });
 });
 
+const viewTransitionPlugin = plugin(({ matchUtilities }) => {
+  matchUtilities({
+    "view-transition-name": (value) => ({
+      "view-transition-name": value,
+    }),
+    "view-transition-class": (value) => ({
+      "view-transition-class": value,
+    }),
+  });
+});
+
 module.exports = {
   anchor: anchorPlugin,
   hocus: hocusPlugin,
   mediaQuery: mediaQueryPlugin,
   pointerQuery: pointerQueryPlugin,
   spaceInline: spaceInlinePlugin,
+  viewTransition: viewTransitionPlugin,
 };

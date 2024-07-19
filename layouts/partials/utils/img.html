@@ -7,17 +7,22 @@
 
 {{ $ext := $src | path.Ext | replaceRE `^\.` "" }}
 {{ $density := $src | replaceRE `^.+@(\d+)x\..+$` "$1" | float }}
-{{ $width := .width | default (div $res.Width $density) }}
-{{ $height := .height | default (div $res.Height $density) }}
+{{ $width := .width | default (int (div $res.Width $density)) }}
+{{ $height := .height | default (int (div $res.Height $density)) }}
 
-{{ $srcsetBreakpoints := slice 384 768 1280 }}
-{{ $sizesBreakpoints := slice 1280 }}
+{{ $srcsetBreakpoints := slice (mul 448 $density) (mul 768 $density) }}
+{{ $sizesBreakpoints := slice
+  (dict "width" 1024 "expr" "calc(65ch - 4rem)")
+  (dict "width"  768 "expr" "calc(65ch - 3rem)")
+  (dict "width"  640 "expr" "calc(65ch - 2.5rem)")
+  (dict "width"  572 "expr" "calc(65ch - 2rem)")
+}}
 
 {{ $srcset := slice }}
 {{ range $srcsetBreakpoints }}
-  {{ if lt (mul 1.25 .) $res.Width }}
-    {{ $thumb := $res.Resize (printf "%dx webp" .) }}
-    {{ $srcset = $srcset | append (printf "%s %dw" $thumb.RelPermalink .) }}
+  {{ if lt (mul 1.1 .) $res.Width }}
+    {{ $thumb := $res.Resize (printf "%dx webp" (int .)) }}
+    {{ $srcset = $srcset | append (printf "%s %dw" $thumb.RelPermalink (int .)) }}
   {{ end }}
 {{ end }}
 {{ if lt (len $srcset) (len $srcsetBreakpoints) }}
@@ -27,9 +32,9 @@
 
 {{ $sizes := slice }}
 {{ range $sizesBreakpoints }}
-  {{ $sizes = $sizes | append (printf "(min-width: %dpx) %dpx" . .) }}
+  {{ $sizes = $sizes | append (printf "(min-width: %dpx) %s" .width .expr) }}
 {{ end }}
-{{ $sizes = $sizes | append "100vw" }}
+{{ $sizes = $sizes | append "calc(100vw - 2rem)" }}
 {{ $sizes = delimit $sizes ", " }}
 
 <figure class="{{ $class }}">

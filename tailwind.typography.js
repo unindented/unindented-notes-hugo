@@ -325,14 +325,18 @@ const typographyColors = ({ theme }) => ({
     "--tw-prose-quotes": theme("colors.uwu.subtext0 / 1"),
     "--tw-prose-quote-borders": theme("colors.uwu.surface1 / 1"),
     "--tw-prose-captions": theme("colors.uwu.subtext0 / 1"),
-    "--tw-prose-checkbox": theme("colors.uwu.mauve / 1"),
+    "--tw-prose-checkbox": `color-mix(in oklch, ${theme("colors.uwu.crust / 1")} 33%, ${theme("colors.uwu.mauve / 1")})`,
     "--tw-prose-mark": theme("colors.uwu.yellow / 1"),
     "--tw-prose-kbd": theme("colors.uwu.text / 1"),
+    "--tw-prose-kbd-shadows": "var(--uwu-text)",
     "--tw-prose-code": theme("colors.uwu.text / 1"),
     "--tw-prose-pre-code": theme("colors.uwu.text / 1"),
     "--tw-prose-pre-bg": theme("colors.uwu.mantle / 1"),
+    "--tw-prose-pre-shadows": "rgb(var(--uwu-shadow) / var(--uwu-shadow-alpha))",
     "--tw-prose-th-borders": theme("colors.uwu.surface2 / 1"),
     "--tw-prose-td-borders": theme("colors.uwu.surface1 / 1"),
+    "--tw-prose-todo-text": theme("colors.uwu.base / 1"),
+    "--tw-prose-todo-bg": theme("colors.uwu.surface2 / 1"),
   },
 });
 
@@ -353,31 +357,40 @@ const typographyDefault = (options) => ({
         marginBottom: "0 !important",
       },
       "h1, h2, h3, h4, h5, h6": {
+        color: "var(--tw-prose-heading-color)",
         textWrap: "balance",
       },
       h1: {
-        color: "var(--tw-prose-h1)",
+        "--tw-prose-heading-color": "var(--tw-prose-h1)",
       },
       h2: {
-        color: "var(--tw-prose-h2)",
+        "--tw-prose-heading-color": "var(--tw-prose-h2)",
       },
       h3: {
-        color: "var(--tw-prose-h3)",
+        "--tw-prose-heading-color": "var(--tw-prose-h3)",
       },
       h4: {
-        color: "var(--tw-prose-h4)",
+        "--tw-prose-heading-color": "var(--tw-prose-h4)",
       },
       h5: {
-        color: "var(--tw-prose-h5)",
+        "--tw-prose-heading-color": "var(--tw-prose-h5)",
         fontWeight: "600",
       },
       h6: {
-        color: "var(--tw-prose-h6)",
+        "--tw-prose-heading-color": "var(--tw-prose-h6)",
         fontWeight: "600",
       },
       "h5 strong, h6 strong": {
         color: "inherit",
         fontWeight: "700",
+      },
+      ".org-todo.todo": {
+        backgroundColor: "var(--tw-prose-heading-color)",
+        color: "var(--tw-prose-todo-text)",
+      },
+      ".org-todo.done": {
+        backgroundColor: "var(--tw-prose-todo-bg)",
+        color: "var(--tw-prose-todo-text)",
       },
       hr: {
         borderStyle: "dotted",
@@ -395,11 +408,6 @@ const typographyDefault = (options) => ({
           "url(\"data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e\");",
         borderColor: "transparent",
       },
-      kbd: {
-        borderColor: "var(--tw-prose-hr)",
-        borderWidth: "1px",
-        boxShadow: "none",
-      },
       "ol:has(> li > input[type=checkbox]), ul:has(> li > input[type=checkbox])": {
         listStyle: "none",
       },
@@ -412,6 +420,9 @@ const typographyDefault = (options) => ({
       },
       mark: {
         backgroundColor: "var(--tw-prose-mark)",
+      },
+      pre: {
+        boxShadow: "inset 0 2px 4px 0 var(--tw-prose-pre-shadows)",
       },
       samp: {
         color: "var(--tw-prose-code)",
@@ -432,6 +443,7 @@ const typographyDefault = (options) => ({
       ".katex-display": {
         color: "var(--tw-prose-pre-code)",
         backgroundColor: "var(--tw-prose-pre-bg)",
+        boxShadow: "inset 0 2px 4px 0 var(--tw-prose-pre-shadows)",
         overflowX: "auto",
       },
       ".src-block-caption": {

@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="{{ site.LanguageCode | default "en-us" }}">
   {{ partial "head" . }}
+
   <body
-    class="flex h-dvh flex-col overflow-hidden break-words bg-uwu-mantle text-sm leading-relaxed text-uwu-text antialiased selection:bg-uwu-overlay2/30 md:text-base lg:text-lg xl:text-xl"
+    class="flex h-dvh flex-col break-words bg-uwu-mantle text-sm leading-relaxed text-uwu-text antialiased selection:bg-uwu-overlay2/30 md:text-base lg:text-lg xl:text-xl"
   >
     {{ partial "scripts-blocking" . }}
 
@@ -11,7 +12,7 @@
 
     <main
       id="main"
-      class="space-inline-4 sm:space-inline-5 md:space-inline-6 lg:space-inline-8 w-full flex-1 overflow-x-scroll whitespace-nowrap text-center"
+      class="space-inline-4 sm:space-inline-5 md:space-inline-6 lg:space-inline-8 w-full flex-1 overflow-y-clip overflow-x-scroll whitespace-nowrap text-center"
     >
       {{ $id := (trim (replaceRE `[^a-z-]` "-" .RelPermalink) "-") | default "index" }}
       {{ $data := dict "pathname" .RelPermalink "math" (.Params.math | default false | cast.ToString) }}
@@ -23,26 +24,31 @@
 
       <article
         id="{{ $id }}"
-        class="h-entry group relative inline-block h-[calc(100%_-_12px)] w-[calc(100vw_-_48px)] overflow-y-scroll whitespace-normal bg-uwu-base text-start shadow-sm only:w-full only:max-w-screen-xl sm:sticky sm:start-0 sm:w-article-container sm:shadow-md md:shadow-lg lg:shadow-xl dark:shadow-black dark:sm:shadow-black dark:md:shadow-black dark:lg:shadow-black"
+        class="h-entry view-transition-class-[article] sm:w-article shadow-uwu-shadow md:shadow-uwu-shadow lg:shadow-uwu-shadow xl:shadow-uwu-shadow group relative inline-flex h-[calc(100%_-_1rem)] w-[calc(100vw_-_3rem)] whitespace-normal bg-uwu-base text-start shadow-sm sm:sticky sm:start-0 sm:shadow-md md:shadow-lg lg:shadow-xl"
         {{ $dataAttributes | safeHTMLAttr }}
       >
-        <div
-          class="e-content prose prose-sm max-w-article-content px-4 py-6 md:prose-base lg:prose-lg xl:prose-xl prose-a:transition-colors prose-img:mx-auto prose-video:mx-auto hocus:prose-a:text-uwu-blue/85 sm:px-5 sm:py-8 md:px-6 md:py-10 lg:px-8 lg:py-12 dark:prose-img:brightness-80 dark:prose-img:contrast-120 dark:prose-video:brightness-80 dark:prose-video:contrast-120"
-        >
-          {{ block "article-header" . }}{{ end }}
-          {{ block "article-main" . }}{{ end }}
-          {{ block "article-footer" . }}{{ end }}
+        <div id="{{ $id }}-content" class="view-transition-class-[article-content] flex-1 overflow-y-scroll">
+          <div
+            class="e-content prose prose-sm max-w-none px-4 py-6 md:prose-base lg:prose-lg xl:prose-xl prose-a:transition-colors prose-img:mx-auto prose-video:mx-auto hocus:prose-a:text-uwu-blue/85 sm:px-5 sm:py-8 md:px-6 md:py-10 lg:px-8 lg:py-12 dark:prose-img:brightness-80 dark:prose-img:contrast-120 dark:prose-video:brightness-80 dark:prose-video:contrast-120"
+          >
+            {{ block "article-header" . }}{{ end }}
+            {{ block "article-main" . }}{{ end }}
+            {{ block "article-footer" . }}{{ end }}
+          </div>
         </div>
 
-        <div class="absolute end-0 top-0 flex gap-4 group-[:first-child]:hidden">
+        <div
+          id="{{ $id }}-toolbar"
+          class="view-transition-class-[article-toolbar] absolute end-0 top-0 rounded-full opacity-85 transition-opacity group-[:first-child]:hidden hocus:opacity-100"
+        >
           <button
             type="button"
             aria-labelledby="{{ $id }}-close"
-            class="m-3 block p-1 text-uwu-subtext0 transition-colors focus-visible:outline-uwu-subtext1 hocus:text-uwu-subtext1 sm:m-4 md:m-5 lg:m-7"
+            class="shadow-uwu-shadow m-1 block rounded-full bg-uwu-mantle p-1 text-uwu-subtext0 shadow-inner transition-colors focus-visible:outline-uwu-subtext1 hocus:text-uwu-subtext1 sm:m-2 md:m-3 lg:m-5"
             data-action="close"
           >
             <svg viewbox="0 0 384 512" fill="currentColor" class="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8">
-              <title id="{{ $id }}-close">Close article</title>
+              <title id="{{ $id }}-close">Close note</title>
               {{ partial "utils/sprite" (dict "name" "close") }}
             </svg>
           </button>

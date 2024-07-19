@@ -1,5 +1,5 @@
 import { StackNavigator } from "./stack-navigator.mjs";
-import diff from "./udomdiff-v1.1.0/udomdiff.min.mjs";
+import udomdiff from "./udomdiff-v1.1.0/udomdiff.min.mjs";
 
 const stackNavigator = new StackNavigator();
 
@@ -27,7 +27,7 @@ export const addLinkListener = (options) => {
   // ... or when the user presses the browser's forward/backward buttons.
   window.addEventListener("popstate", renderStackInContainer);
 
-  options.container.addEventListener("click", async (event) => {
+  window.addEventListener("click", async (event) => {
     const { defaultPrevented, altKey, ctrlKey, metaKey, target } = event;
 
     if (defaultPrevented || altKey || ctrlKey || metaKey || !target) {
@@ -66,11 +66,51 @@ const renderStack = async (options) => {
   const stack = stackNavigator.getStack();
   const stackNodes = await Promise.all(stack.map((pathname) => getOrCreateElementWithPathname(pathname, options)));
 
-  // Reconcile the old and new child nodes...
-  const newNodes = [container.firstElementChild].concat(stackNodes);
   const oldNodes = Array.from(container.childNodes);
-  diff(container, oldNodes, newNodes, (/** @type {Element} */ e) => e);
-  // ... and scroll to the current one.
+  const newNodes = [/** @type {HTMLElement} */ (container.firstElementChild)].concat(stackNodes);
+  diffNodesWithTransition(oldNodes, newNodes, options);
+};
+
+/**
+ * @param {Node[]} oldNodes
+ * @param {HTMLElement[]} newNodes
+ * @param {Options} options
+ */
+const diffNodesWithTransition = async (oldNodes, newNodes, options) => {
+  if (
+    // @ts-ignore
+    !document.startViewTransition ||
+    !CSS.supports("view-transition-name", "foo") ||
+    !CSS.supports("view-transition-class", "foo")
+  ) {
+    diffNodes(oldNodes, newNodes, options);
+  } else {
+    // Asign transition names to the nodes, and to their immediate children.
+    newNodes.forEach((node) => {
+      // @ts-ignore
+      node.style.viewTransitionName = `t-${node.id}`;
+      /** @type {NodeListOf<HTMLElement>} */ (node.querySelectorAll(":scope > *")).forEach((node) => {
+        // @ts-ignore
+        node.style.viewTransitionName = `t-${node.id}`;
+      });
+    });
+    // @ts-ignore
+    const transition = document.startViewTransition(() => {
+      diffNodes(oldNodes, newNodes, options);
+    });
+    await transition.ready;
+  }
+};
+
+/**
+ * @param {Node[]} oldNodes
+ * @param {Node[]} newNodes
+ * @param {Options} options
+ */
+const diffNodes = (oldNodes, newNodes, options) => {
+  // Reconcile the old and new child nodes...
+  udomdiff(options.container, oldNodes, newNodes, (/** @type {Element} */ e) => e);
+  // ... and scroll and focus on the current one.
   const currentPathname = stackNavigator.getCurrent();
   if (currentPathname) {
     scrollToElementWithPathname(currentPathname, options);
@@ -81,7 +121,7 @@ const renderStack = async (options) => {
 /**
  * @param {string} pathname
  * @param {Options} options
- * @returns {Promise<HTMLElement | null> | HTMLElement | null}
+ * @returns {Promise<HTMLElement> | HTMLElement}
  */
 const getOrCreateElementWithPathname = (pathname, options) => {
   return getElementWithPathname(pathname, options) ?? createElementWithPathname(pathname);
@@ -98,7 +138,7 @@ const getElementWithPathname = (pathname, { container }) => {
 
 /**
  * @param {string} pathname
- * @returns {Promise<HTMLElement | null>}
+ * @returns {Promise<HTMLElement>}
  */
 const createElementWithPathname = async (pathname) => {
   const response = await fetch(pathname);
@@ -115,7 +155,7 @@ const createElementWithPathname = async (pathname) => {
 const scrollToElementWithPathname = (pathname, options) => {
   const stackItem = getElementWithPathname(pathname, options);
   if (stackItem) {
-    options.container.scroll({ behavior: "smooth", left: stackItem.offsetLeft });
+    stackItem.scrollIntoView({ behavior: "smooth", inline: "end" });
   }
 };
 
@@ -126,7 +166,7 @@ const scrollToElementWithPathname = (pathname, options) => {
 const focusOnElementWithPathname = (pathname, options) => {
   const stackItem = getElementWithPathname(pathname, options);
   if (stackItem) {
-    stackItem.querySelector("a")?.focus();
+    stackItem.focus();
   }
 };
 

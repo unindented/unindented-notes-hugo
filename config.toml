@@ -51,8 +51,8 @@ noJSConfigInAssets = true
 writeStats = true
 
 [imaging]
-hint = 'icon'
-quality = 75
+quality = 85
+resampleFilter = 'box'
 
 [markup.highlight]
 noClasses = false
