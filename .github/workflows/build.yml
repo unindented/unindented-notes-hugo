@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
           submodules: recursive
@@ -23,13 +23,13 @@ jobs:
         with:
           version: ${{ env.EMACS_VERSION }}
       - name: Cache Emacs packages
-        uses: actions/cache@v4
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
         with:
           path: content-org/.packages
           key: ${{ runner.os }}-emacs-${{ hashFiles('content-org/export.el') }}
 
       - name: Set up Hugo ${{ env.HUGO_VERSION }}
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3
         with:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
@@ -37,7 +37,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
       - name: Set up Node ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -58,7 +58,7 @@ jobs:
           BASE_URL: ${{ github.event_name == 'pull_request' && 'https://dev.notes.unindented.org/' || 'https://notes.unindented.org/' }}
 
       - name: Upload website
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
         with:
           name: website
           path: public

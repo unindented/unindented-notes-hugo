@@ -10,18 +10,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.45.1-jammy
+      image: mcr.microsoft.com/playwright:v1.45.3-jammy@sha256:b24b5ad840990572e84d03acc47c29bd46a07ee012859f19a6c40fb3a8726e3f
     env:
       HOME: /root
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
           submodules: recursive
 
       - name: Download website
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: website
           path: public
@@ -29,7 +29,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
       - name: Set up Node ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -46,7 +46,7 @@ jobs:
         run: pnpm test:e2e
 
       - name: Upload e2e test reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
         if: ${{ always() }}
         with:
           name: e2e-reports
@@ -59,13 +59,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
           submodules: recursive
 
       - name: Download website
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: website
           path: public
@@ -73,7 +73,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
       - name: Set up Node ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
