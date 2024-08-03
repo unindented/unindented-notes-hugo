@@ -141,7 +141,7 @@ const getElementWithPathname = (pathname, { container }) => {
  * @returns {Promise<HTMLElement>}
  */
 const createElementWithPathname = async (pathname) => {
-  const response = await fetch(pathname);
+  const response = await fetch(pathname, { headers: { accept: "text/html" } });
   const responseText = await response.text();
   const fragment = document.createElement("template");
   fragment.innerHTML = responseText;
