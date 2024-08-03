@@ -7,6 +7,9 @@
 {{ $version := now.Format "v20060102" }}
 */
 
+// @ts-ignore
+const _self = /** @type {ServiceWorkerGlobalScope} */ (self);
+
 const version = "{{ $version }}";
 const staticCacheName = version + "-static";
 const pagesCacheName = version + "-pages";
@@ -16,7 +19,7 @@ const assetsCacheName = version + "-assets";
 const offlinePages = [
   '{{ relref . "/" }}',
   '{{ relref . "/notes" }}',
-  '{{ $latestArticles }}',
+  '{{ $latestArticles }}'
 ];
 
 const staticAssets = [
@@ -35,13 +38,26 @@ const updateStaticCache = () => {
   return caches.open(staticCacheName).then((cache) => cache.addAll(staticAssets.map((url) => new Request(url))));
 };
 
+/**
+ * @param {string} cacheName
+ * @param {Request} request
+ * @param {Response} response
+ */
 const stashInCache = async (cacheName, request, response) => {
   const cache = await caches.open(cacheName);
   cache.put(request, response);
 };
 
+/**
+ * @param {RequestInfo} request
+ * @returns {Promise<Response | undefined>}
+ */
 const readCaches = (request) => caches.match(request, { ignoreVary: true });
 
+/**
+ * @param {string} cacheName
+ * @param {number} maxItems
+ */
 const trimCache = async (cacheName, maxItems) => {
   const cache = await caches.open(cacheName);
   const keys = await cache.keys();
@@ -51,27 +67,47 @@ const trimCache = async (cacheName, maxItems) => {
   }
 };
 
+/**
+ * @returns {Promise<boolean[]>}
+ */
 const clearOldCaches = async () => {
   const keys = await caches.keys();
   const keysToDelete = keys.filter((key) => key.indexOf(version) !== 0);
   return Promise.all(keysToDelete.map((key) => caches.delete(key)));
 };
 
+/**
+ * @param {Request} request
+ * @param {string} type
+ * @returns {boolean}
+ */
 const isRequestOfType = (request, type) => {
   const accept = request.headers.get("accept") || "text/html";
   return accept.indexOf(type) != -1;
 };
 
+/**
+ * @param {Request} request
+ * @returns {boolean}
+ */
 const isRequestForOfflinePage = (request) => {
   const { pathname } = new URL(request.url);
   return offlinePages.includes(pathname) || offlinePages.includes(`${pathname}/`);
 };
 
+/**
+ * @param {Request} request
+ * @returns {boolean}
+ */
 const isRequestForStaticAsset = (request) => {
   const { pathname } = new URL(request.url);
   return staticAssets.includes(pathname);
 };
 
+/**
+ * @param {Request} request
+ * @returns {string}
+ */
 const getCacheNameForRequest = (request) => {
   if (isRequestForOfflinePage(request) || isRequestForStaticAsset(request)) {
     return staticCacheName;
@@ -85,28 +121,32 @@ const getCacheNameForRequest = (request) => {
   return assetsCacheName;
 };
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(updateStaticCache().then(() => self.skipWaiting()));
+_self.addEventListener("install", (event) => {
+  event.waitUntil(updateStaticCache().then(() => _self.skipWaiting()));
 });
 
-self.addEventListener("activate", (event) => {
-  event.waitUntil(clearOldCaches().then(() => self.clients.claim()));
+_self.addEventListener("activate", (event) => {
+  event.waitUntil(clearOldCaches().then(() => _self.clients.claim()));
 });
 
-self.addEventListener("message", (event) => {
+_self.addEventListener("message", (event) => {
   if (event.data.command === "trimCaches") {
     trimCache(pagesCacheName, 25);
     trimCache(imagesCacheName, 10);
   }
 });
 
-self.addEventListener("fetch", (event) => {
+_self.addEventListener("fetch", (event) => {
   const { request } = event;
 
   if (request.method !== "GET") {
     return;
   }
 
+  /**
+   * @param {Response} response
+   * @returns {Response}
+   */
   const onNetworkResolve = (response) => {
     const cacheCopy = response.clone();
     const cacheName = getCacheNameForRequest(request);
@@ -115,16 +155,25 @@ self.addEventListener("fetch", (event) => {
     return response;
   };
 
+  /**
+   * @returns {Promise<Response>}
+   */
   const onNetworkReject = async () => {
+    /** @type {Response | undefined} */
+    let response;
+
     if (isRequestOfType(request, "text/html")) {
-      const cachedResponse = await readCaches(request);
-      return cachedResponse || readCaches('{{ "offline.html" | relURL }}');
+      response = (await readCaches(request)) ?? (await readCaches('{{ "offline.html" | relURL }}'));
+    } else if (isRequestOfType(request, "image")) {
+      response = new Response(`{{ $offlineImage }}`, { headers: { "content-type": "image/svg+xml" } });
     }
-    if (isRequestOfType(request, "image")) {
-      return new Response(`{{ $offlineImage }}`, { headers: { "content-type": "image/svg+xml" } });
-    }
+
+    return response ?? new Response(null, { status: 404, statusText: "Not Found" });
   };
 
+  /**
+   * @returns {Promise<Response>}
+   */
   const fetchFromNetworkOrFallback = async () => {
     try {
       const response = await fetch(request);
@@ -134,9 +183,12 @@ self.addEventListener("fetch", (event) => {
     }
   };
 
+  /**
+   * @returns {Promise<Response>}
+   */
   const cacheOrFetchFromNetworkOrFallback = async () => {
     const cachedResponse = await readCaches(request);
-    return cachedResponse || fetchFromNetworkOrFallback();
+    return cachedResponse ?? fetchFromNetworkOrFallback();
   };
 
   // For HTML requests, try the network first, then fall back to the cache.
