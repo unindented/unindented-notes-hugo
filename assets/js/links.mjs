@@ -145,7 +145,10 @@ const createElementWithPathname = async (pathname) => {
   const responseText = await response.text();
   const fragment = document.createElement("template");
   fragment.innerHTML = responseText;
-  return /** @type {HTMLElement} */ (fragment.content.querySelector("article"));
+  const article = /** @type {HTMLElement} */ (fragment.content.querySelector("article"));
+  // When the user is offline, we may serve `/offline.html`, which would have the wrong `data-pathname` value.
+  article.dataset.pathname = pathname;
+  return article;
 };
 
 /**
