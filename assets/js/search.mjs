@@ -57,7 +57,7 @@ const executeSearch = async (options) => {
 
   if (!index || !fuzzysort) {
     [index, { default: fuzzysort }] = await Promise.all([
-      fetch(indexUrl).then((response) => response.json()),
+      fetch(indexUrl, { headers: { accept: "application/json" } }).then((response) => response.json()),
       import(fuzzysortScript),
     ]);
   }
