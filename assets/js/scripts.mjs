@@ -66,7 +66,11 @@ addMathObserver({
 
 /*
 {{ $serviceWorker := resources.Get "js/service-worker.mjs" |
-                     resources.ExecuteAsTemplate "service-worker.mjs" . }}
+                     resources.ExecuteAsTemplate "service-worker.mjs" . |
+                     js.Build (dict "format" "esm"
+                                     "minify" hugo.IsProduction
+                                     "sourceMap" "external"
+                                     "targetPath" "service-worker.min.mjs") }}
 */
 
 // @ts-ignore
