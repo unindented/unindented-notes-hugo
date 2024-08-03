@@ -65,8 +65,8 @@ addMathObserver({
 // Service Worker /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-{{ $serviceWorker := resources.Get "js/service-worker.js" |
-                     resources.ExecuteAsTemplate "service-worker.js" . }}
+{{ $serviceWorker := resources.Get "js/service-worker.mjs" |
+                     resources.ExecuteAsTemplate "service-worker.mjs" . }}
 */
 
 // @ts-ignore
