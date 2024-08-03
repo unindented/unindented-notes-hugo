@@ -138,8 +138,9 @@ _self.addEventListener("message", (event) => {
 
 _self.addEventListener("fetch", (event) => {
   const { request } = event;
+  const url = new URL(request.url);
 
-  if (request.method !== "GET") {
+  if (request.method !== "GET" || (url.protocol !== "http:" && url.protocol !== "https:")) {
     return;
   }
 
