@@ -79,6 +79,14 @@ const pointerQueryPlugin = plugin(({ addVariant }) => {
   addVariant("pointer-fine", "@media (pointer: fine)");
 });
 
+const scrollbarPlugin = plugin(({ addUtilities }) => {
+  addUtilities({
+    ".scrollbar-auto": { "scrollbar-width": "auto" },
+    ".scrollbar-thin": { "scrollbar-width": "thin" },
+    ".scrollbar-none": { "scrollbar-width": "none" },
+  });
+});
+
 const spaceInlinePlugin = plugin(({ matchUtilities, addUtilities, theme }) => {
   matchUtilities(
     {
@@ -118,6 +126,7 @@ module.exports = {
   hocus: hocusPlugin,
   mediaQuery: mediaQueryPlugin,
   pointerQuery: pointerQueryPlugin,
+  scrollbar: scrollbarPlugin,
   spaceInline: spaceInlinePlugin,
   viewTransition: viewTransitionPlugin,
 };
