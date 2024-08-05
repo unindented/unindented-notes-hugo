@@ -6,6 +6,7 @@
     "config:semverAllMonthly",
     ":disableRateLimiting",
     ":noUnscheduledUpdates",
+    ":automergeDigest",
     ":automergeLinters",
     ":automergeTesters",
     ":automergeTypes",
