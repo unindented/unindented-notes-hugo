@@ -1,6 +1,14 @@
 const typography = require("@tailwindcss/typography");
 
-const { anchor, hocus, mediaQuery, pointerQuery, spaceInline, viewTransition } = require("./tailwind.plugins");
+const {
+  anchor,
+  hocus,
+  mediaQuery,
+  pointerQuery,
+  scrollbar,
+  spaceInline,
+  viewTransition,
+} = require("./tailwind.plugins");
 const customTypography = require("./tailwind.typography");
 
 module.exports = {
@@ -12,7 +20,7 @@ module.exports = {
     "./static/js/*.js",
     "./static/js/*.mjs",
   ],
-  plugins: [typography, anchor, hocus, mediaQuery, pointerQuery, spaceInline, viewTransition],
+  plugins: [typography, anchor, hocus, mediaQuery, pointerQuery, scrollbar, spaceInline, viewTransition],
   darkMode: [
     "variant",
     [

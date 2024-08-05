@@ -23,7 +23,7 @@
     */}}
     <main
       id="main"
-      class="w-full flex-1 space-inline-4 scripting:overflow-y-clip scripting:overflow-x-scroll scripting:whitespace-nowrap scripting:text-center sm:space-inline-5 md:space-inline-6 lg:space-inline-8"
+      class="w-full flex-1 space-inline-4 scripting:overflow-x-auto scripting:overflow-y-clip scripting:whitespace-nowrap scripting:text-center sm:space-inline-5 md:space-inline-6 lg:space-inline-8"
     >
       {{ $id := (trim (replaceRE `[^a-z-]` "-" .RelPermalink) "-") | default "index" }}
       {{ $data := dict
@@ -53,7 +53,10 @@
           When scripting is not enabled, don't set `overflow-y: scroll` here, because I want the full page to scroll.
           When scripting is enabled, I do set it, so that each article can be scrolled separately.
         */}}
-        <div id="{{ $id }}-content" class="flex-1 view-transition-class-[article-content] scripting:overflow-y-scroll">
+        <div
+          id="{{ $id }}-content"
+          class="flex-1 scrollbar-thin view-transition-class-[article-content] scripting:overflow-y-auto"
+        >
           {{/* -
             When scripting is not enabled, I set the max width of this block to 70ch, because the parent is much
             wider and it'd result in really long lines.

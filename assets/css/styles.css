@@ -12,6 +12,11 @@
     @apply outline outline-2 outline-offset-2 outline-uwu-blue;
   }
 
+  /* Style scrollbars. */
+  * {
+    scrollbar-color: rgb(var(--uwu-overlay0)) rgb(var(--uwu-surface0) / 0.5);
+  }
+
   @supports (view-transition-name: foo) {
     /* Don't capture the root in transitions, allowing pointer interaction during animation. */
     :root {
@@ -20,9 +25,11 @@
     html::view-transition {
       pointer-events: none;
     }
+    /* Set animation duration for all transitions. */
     html::view-transition-group(*) {
       animation-duration: 0.25s;
     }
+    /* Avoid animating changes in aspect ratio. */
     html::view-transition-old(.article),
     html::view-transition-new(.article) {
       height: 100%;
