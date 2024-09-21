@@ -30,18 +30,18 @@
     "tailwindcss": "3.4.12"
   },
   "devDependencies": {
-    "@eslint/js": "9.10.0",
-    "@playwright/test": "1.47.1",
+    "@eslint/js": "9.11.0",
+    "@playwright/test": "1.47.2",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-terser": "0.4.4",
-    "eslint": "9.10.0",
+    "eslint": "9.11.0",
     "globals": "15.9.0",
     "npm-run-all2": "6.2.3",
     "prettier": "3.3.3",
     "prettier-plugin-go-template": "0.0.15",
     "prettier-plugin-tailwindcss": "0.6.6",
-    "rollup": "4.22.0",
+    "rollup": "4.22.2",
     "typescript": "5.6.2"
   },
-  "packageManager": "pnpm@9.10.0"
+  "packageManager": "pnpm@9.11.0"
 }

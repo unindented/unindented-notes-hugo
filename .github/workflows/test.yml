@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.47.1-jammy@sha256:136426a7d08b27011872de8e659ca2a38ed090a606c321b010da023d91d2e67e
+      image: mcr.microsoft.com/playwright:v1.47.2-jammy@sha256:eee5be766a342139241c9a51e6449cb8f6ff2847fbd0792f91793aaf0c7f4f46
     env:
       HOME: /root
     steps:
