@@ -6,9 +6,9 @@ const anchorPlugin = plugin(({ matchUtilities }) => {
       "anchor-name": `--${value}`,
     }),
     "anchor-position": (value) => ({
-      "inset-area": "block-end span-inline-start",
       "min-width": "anchor-size(width)",
       "position-anchor": `--${value}`,
+      "position-area": "block-end span-inline-start",
     }),
   });
 });
