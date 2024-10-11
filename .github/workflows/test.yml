@@ -46,7 +46,7 @@ jobs:
         run: pnpm test:e2e
 
       - name: Upload e2e test reports
-        uses: actions/upload-artifact@604373da6381bf24206979c74d06a550515601b9 # v4
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
         if: ${{ always() }}
         with:
           name: e2e-reports
