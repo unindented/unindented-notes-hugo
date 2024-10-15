@@ -13,6 +13,28 @@ const anchorPlugin = plugin(({ matchUtilities }) => {
   });
 });
 
+const contentVisibilityPlugin = plugin(
+  function ({ matchUtilities, theme }) {
+    matchUtilities(
+      {
+        "content-visibility": (value) => {
+          return { "content-visibility": value };
+        },
+      },
+      { values: theme("contentVisibility") },
+    );
+  },
+  {
+    theme: {
+      contentVisibility: {
+        auto: "auto",
+        hidden: "hidden",
+        visible: "visible",
+      },
+    },
+  },
+);
+
 const hocusPlugin = plugin(({ addVariant }) => {
   addVariant("hocus", ["&:hover", "&:focus"]);
   addVariant("hocus-within", ["&:hover", "&:focus-within"]);
@@ -123,6 +145,7 @@ const viewTransitionPlugin = plugin(({ matchUtilities }) => {
 
 module.exports = {
   anchor: anchorPlugin,
+  contentVisibility: contentVisibilityPlugin,
   hocus: hocusPlugin,
   mediaQuery: mediaQueryPlugin,
   pointerQuery: pointerQueryPlugin,
