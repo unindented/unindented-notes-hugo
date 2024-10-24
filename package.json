@@ -36,7 +36,7 @@
     "@rollup/plugin-terser": "0.4.4",
     "eslint": "9.13.0",
     "globals": "15.11.0",
-    "npm-run-all2": "7.0.0",
+    "npm-run-all2": "7.0.1",
     "prettier": "3.3.3",
     "prettier-plugin-go-template": "0.0.15",
     "prettier-plugin-tailwindcss": "0.6.8",
