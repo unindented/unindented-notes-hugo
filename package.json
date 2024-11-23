@@ -40,7 +40,7 @@
     "prettier": "3.3.3",
     "prettier-plugin-go-template": "0.0.15",
     "prettier-plugin-tailwindcss": "0.6.9",
-    "rollup": "4.27.3",
+    "rollup": "4.27.4",
     "typescript": "5.7.2"
   },
   "packageManager": "pnpm@9.14.2"
