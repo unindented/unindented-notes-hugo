@@ -17,7 +17,7 @@
     "test:e2e": "playwright test",
     "test:e2e:update-snapshots": "run-s test:e2e:update-snapshots:*",
     "test:e2e:update-snapshots:host": "pnpm test:e2e --update-snapshots",
-    "test:e2e:update-snapshots:linux": "docker run -it --rm --ipc=host -v \"${PWD}:/var/app/\" mcr.microsoft.com/playwright:v1.46.0-jammy /bin/bash -c 'cd /var/app; export CI=true; corepack enable; pnpm playwright install; pnpm test:e2e --update-snapshots'",
+    "test:e2e:update-snapshots:linux": "docker run -it --rm --ipc=host -v \"${PWD}:/var/app/\" mcr.microsoft.com/playwright:v1.49.1-jammy /bin/bash -c 'cd /var/app; export CI=true; corepack enable; pnpm playwright install; pnpm test:e2e --update-snapshots'",
     "test:lhci": "pnpm --package=@lhci/cli dlx lhci autorun"
   },
   "dependencies": {
