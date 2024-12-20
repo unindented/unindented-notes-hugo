@@ -43,5 +43,5 @@
     "rollup": "4.28.1",
     "typescript": "5.7.2"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.1"
 }
