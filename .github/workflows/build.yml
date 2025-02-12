@@ -53,6 +53,7 @@ jobs:
           pnpm build \
             --baseURL "$BASE_URL" \
             --destination "public"
+          cp static/.* public/
           make compress
         env:
           BASE_URL: ${{ github.event_name == 'pull_request' && 'https://dev.notes.unindented.org/' || 'https://notes.unindented.org/' }}
@@ -63,3 +64,4 @@ jobs:
           name: website
           path: public
           retention-days: 1
+          include-hidden-files: true
